@@ -1,0 +1,57 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-4">
+      <h1>Formulario</h1>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre"  >
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Precio</label>
+          <input type="number" class="form-control" formControlName="precio"  >
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Descripcion</label>
+          <textarea class="form-control"  rows="3" formControlName="descripcion"  ></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Categoria</label>
+          <input type="text" class="form-control" formControlName="categoria"   >
+        </div>
+        <button type="submit" class="btn btn-primary">{{idFood ? 'Editar' : 'Crear'}}</button>
+      </form>
+    </div>
+    <div class="col-8">
+      <h1>Listado</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let food of listFood">
+            <th scope="row">{{food._id}}</th>
+            <td>{{food.nombre}}</td>
+            <td>{{food.precio}}</td>
+            <td>{{food.categoria}}</td>
+            <td>{{food.descripcion}}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-danger" (click)="eliminarFood(food._id)">Eliminar</button>
+                <button type="button" class="btn btn-warning" (click)="obtenerDataEditar(food)">Editar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
